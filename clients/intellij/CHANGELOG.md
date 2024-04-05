@@ -1,3 +1,9 @@
+## 1.4.1
+
+### Fixes:
+
+- Added support for IntelliJ Platform IDEs version 2024.1.
+
 ## 1.4.0
 
 ### Features
