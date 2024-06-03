@@ -11,7 +11,8 @@ import {
   Mail,
   Search,
   Sparkles,
-  Star
+  Star,
+  Tag
 } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
@@ -1488,6 +1489,13 @@ function IconSearch({
   return <Search className={cn('h4 w-4', className)} {...props} />
 }
 
+function IconTag({
+  className,
+  ...props
+}: React.ComponentProps<typeof Tag>) {
+  return <Tag className={cn('h4 w-4', className)} {...props} />
+}
+
 export {
   IconEdit,
   IconNextChat,
@@ -1567,5 +1575,6 @@ export {
   IconJetBrains,
   IconLayers,
   IconSparkles,
-  IconSearch
+  IconSearch,
+  IconTag
 }
