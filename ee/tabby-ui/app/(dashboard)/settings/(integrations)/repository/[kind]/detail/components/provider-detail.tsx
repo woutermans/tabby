@@ -418,7 +418,7 @@ const ActiveRepoTable: React.FC<{
             <TableHead className="w-[25%]">Name</TableHead>
             <TableHead className="w-[45%]">URL</TableHead>
             <TableHead>Job</TableHead>
-            <TableHead className="text-right w-[100px]">
+            <TableHead className="w-[100px] text-right">
               <Dialog open={open} onOpenChange={setOpen}>
                 <DialogContent className="top-[20vh]">
                   <DialogHeader className="gap-3">
@@ -472,7 +472,7 @@ const ActiveRepoTable: React.FC<{
                     <TableCell>{x.node.name}</TableCell>
                     <TableCell>{x.node.gitUrl}</TableCell>
                     <TableCell>
-                      <div className="flex gap-2.5 items-center">
+                      <div className="flex items-center gap-2.5">
                         <TooltipProvider delayDuration={0}>
                           <Tooltip>
                             <TooltipTrigger asChild>
@@ -503,7 +503,7 @@ const ActiveRepoTable: React.FC<{
                                 <Button size="icon" variant="ghost">
                                   <IconCirclePlay
                                     strokeWidth={1}
-                                    className="w-5 h-5"
+                                    className="h-5 w-5"
                                   />
                                 </Button>
                               </TooltipTrigger>
@@ -518,7 +518,7 @@ const ActiveRepoTable: React.FC<{
                                 <Button size="icon" variant="ghost">
                                   <IconStop
                                     strokeWidth={1}
-                                    className="w-5 h-5"
+                                    className="h-5 w-5"
                                   />
                                 </Button>
                               </TooltipTrigger>
