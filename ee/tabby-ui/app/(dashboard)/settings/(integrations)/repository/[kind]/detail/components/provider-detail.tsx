@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
-import moment from 'moment'
 import { toast } from 'sonner'
 import { TypedDocumentNode, useQuery } from 'urql'
 
@@ -30,7 +29,6 @@ import {
   listGitlabSelfHostedRepositories,
   listGitlabSelfHostedRepositoryProviders
 } from '@/lib/tabby/query'
-import { cn } from '@/lib/utils'
 import { Badge } from '@/components/ui/badge'
 import { Button, buttonVariants } from '@/components/ui/button'
 import { CardContent, CardTitle } from '@/components/ui/card'
@@ -45,10 +43,10 @@ import {
 import {
   IconChevronLeft,
   IconChevronRight,
-  IconCirclePlay,
+  IconLink,
+  IconPlay,
   IconPlus,
   IconSpinner,
-  IconStop,
   IconTrash
 } from '@/components/ui/icons'
 import {
@@ -62,7 +60,6 @@ import {
 import {
   Tooltip,
   TooltipContent,
-  TooltipProvider,
   TooltipTrigger
 } from '@/components/ui/tooltip'
 import LoadingWrapper from '@/components/loading-wrapper'
@@ -79,7 +76,6 @@ import AddRepositoryForm from './add-repository-form'
 import { UpdateProviderForm } from './update-provider-form'
 
 const PAGE_SIZE = DEFAULT_PAGE_SIZE
-const MOCK_START_TIME = moment().format('YYYY-MM-DD HH:mm')
 
 type Repositories = Array<{
   cursor: string
@@ -453,6 +449,7 @@ const ActiveRepoTable: React.FC<{
                   <TableRow key={x.node.id} className="!bg-muted/80">
                     <TableCell>{x.node.name}</TableCell>
                     <TableCell>{x.node.gitUrl}</TableCell>
+                    <TableCell></TableCell>
                     <TableCell className="flex justify-end">
                       <div
                         className={buttonVariants({
@@ -472,62 +469,37 @@ const ActiveRepoTable: React.FC<{
                     <TableCell>{x.node.name}</TableCell>
                     <TableCell>{x.node.gitUrl}</TableCell>
                     <TableCell>
-                      <div className="flex items-center gap-2.5">
-                        <TooltipProvider delayDuration={0}>
+                      <div className="flex items-center gap-1.5">
+                        {index !== 0 && (
+                          <Tooltip>
+                            <TooltipTrigger asChild>
+                              <Button size="icon" variant="ghost">
+                                <IconPlay />
+                              </Button>
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              <p>Run</p>
+                            </TooltipContent>
+                          </Tooltip>
+                        )}
+                        {index === 0 && (
                           <Tooltip>
                             <TooltipTrigger asChild>
                               <Link
                                 href=""
-                                className={cn(
-                                  'flex h-8 w-8 items-center justify-center rounded text-xs text-white hover:opacity-70',
-                                  {
-                                    'bg-blue-600': index === 0,
-                                    'bg-green-600': index === 1,
-                                    'bg-red-600': index === 2
-                                  }
-                                )}
+                                className={buttonVariants({
+                                  variant: 'ghost',
+                                  size: 'icon'
+                                })}
                               >
-                                {index === 0 ? <IconSpinner /> : '20s'}
+                                <IconLink />
                               </Link>
                             </TooltipTrigger>
                             <TooltipContent>
-                              <p>{MOCK_START_TIME}</p>
+                              Navigate to job detail
                             </TooltipContent>
                           </Tooltip>
-                        </TooltipProvider>
-
-                        <div className="flex items-center gap-1.5">
-                          {index !== 0 && (
-                            <Tooltip>
-                              <TooltipTrigger asChild>
-                                <Button size="icon" variant="ghost">
-                                  <IconCirclePlay
-                                    strokeWidth={1}
-                                    className="h-5 w-5"
-                                  />
-                                </Button>
-                              </TooltipTrigger>
-                              <TooltipContent>
-                                <p>Run</p>
-                              </TooltipContent>
-                            </Tooltip>
-                          )}
-                          {index === 0 && (
-                            <Tooltip>
-                              <TooltipTrigger asChild>
-                                <Button size="icon" variant="ghost">
-                                  <IconStop
-                                    strokeWidth={1}
-                                    className="h-5 w-5"
-                                  />
-                                </Button>
-                              </TooltipTrigger>
-                              <TooltipContent>
-                                <p>Stop</p>
-                              </TooltipContent>
-                            </Tooltip>
-                          )}
-                        </div>
+                        )}
                       </div>
                     </TableCell>
                     <TableCell className="flex justify-end">

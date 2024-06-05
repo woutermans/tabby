@@ -5,11 +5,11 @@ import * as React from 'react'
 import {
   BookOpenText,
   ChevronsDownUp,
-  CirclePlay,
   CircleStop,
   GitFork,
+  Link,
   Mail,
-  Pause,
+  Play,
   Star
 } from 'lucide-react'
 
@@ -1452,18 +1452,18 @@ function IconJetBrains({ className, ...props }: React.ComponentProps<'svg'>) {
   )
 }
 
-const IconCirclePlay = ({
+const IconPlay = ({
   className,
   ...props
-}: React.ComponentProps<typeof CirclePlay>) => (
-  <CirclePlay className={cn('h4 w-4', className)} {...props} />
+}: React.ComponentProps<typeof Play>) => (
+  <Play className={cn('h4 w-4', className)} {...props} />
 )
 
-const IconPause = ({
+const IconLink = ({
   className,
   ...props
-}: React.ComponentProps<typeof Pause>) => (
-  <Pause className={cn('h4 w-4', className)} {...props} />
+}: React.ComponentProps<typeof Link>) => (
+  <Link className={cn('h4 w-4', className)} {...props} />
 )
 
 export {
@@ -1542,6 +1542,6 @@ export {
   IconGitFork,
   IconVSCode,
   IconJetBrains,
-  IconCirclePlay,
-  IconPause
+  IconPlay,
+  IconLink
 }
